@@ -37,3 +37,12 @@ const getElements = () => {
 
     return els;
 }
+
+const getEditor = () => {
+    let con = document.createElement("div");
+    let TA = document.createElement('textarea');
+    TA.value = el.value;
+    con.style.display = 'none';
+    con.appendChild(TA);
+    return con;
+}
