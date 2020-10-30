@@ -65,6 +65,17 @@ const getSubmitButton = ({id, value}) => {
     return con;
 }
 
+const getHideButton = (el) => {
+    let button = document.createElement("button");
+    button.innerHTML = "Hide";
+
+    button.onclick = (e) => {
+        e.target.parentNode.parentNode.children[2].style.display = 'none';
+    }
+
+    return button;
+}
+
 const wrapInContainer = (el) => {
     el.style.paddingRight = `${buttonSize + 4}px`
     let elc = el.cloneNode();
@@ -84,6 +95,7 @@ const wrapInContainer = (el) => {
     let cEditor = CKEDITOR.replace(editor.children[0]);
     let button = getSubmitButton({id: cEditor.name, value: 'Done'});
     editor.appendChild(button);
+    editor.appendChild(getHideButton());
 }
 
 window.onload = () => {
