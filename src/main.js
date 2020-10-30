@@ -19,8 +19,8 @@ const getIcon = () => {
     icon.style.maxHeight = data.iconMaxHeight;
     icon.src = data.icon;
 
-    iconCon.onclick = () => {
-        alert(1)
+    iconCon.onclick = (e) => {
+        e.target.parentNode.nextSibling.style.display = 'block'
     }
 
     iconCon.appendChild(icon);
