@@ -57,15 +57,16 @@ const getSubmitButton = ({id, value}) => {
     button.id = `editor_button_${id}`;
     button.innerHTML = value;
 
-    button.onclick = () => {
-        alert(CKEDITOR.instances[id].getData());
+    button.onclick = (e) => {
+        let val = CKEDITOR.instances[id].getData();
+        e.target.parentNode.parentNode.parentNode.children[0].value = val;
     }
 
     con.appendChild(button);
     return con;
 }
 
-const getHideButton = (el) => {
+const getHideButton = () => {
     let button = document.createElement("button");
     button.innerHTML = "Hide";
 
