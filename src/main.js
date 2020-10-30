@@ -1,7 +1,11 @@
 const data = Object.freeze({
     maxWidth: 20,
     maxHeight: 20,
-    icon: ''
+    icon: '',
+    target: [
+        'textarea',
+        'input[type=text]'
+    ]
 })
 
 const getIcon = () => {
@@ -18,4 +22,15 @@ const getIcon = () => {
 
     iconCon.appendChild(icon);
     return iconCon;
+}
+
+const getElements = () => {
+
+    let els = [];
+
+    data.target.map(target => {
+        els.concat(document.querySelector(target));
+    });
+
+    return els;
 }
