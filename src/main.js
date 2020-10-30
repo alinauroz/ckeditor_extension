@@ -29,7 +29,7 @@ const getElements = () => {
     let els = [];
 
     data.target.map(target => {
-        els.concat(document.querySelector(target));
+        els.concat(document.querySelectorAll(target));
     });
 
     return els;
