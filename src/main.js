@@ -8,6 +8,8 @@ const data = Object.freeze({
     ]
 })
 
+const buttonSize = data.maxWidth;
+
 const getIcon = () => {
 
     let iconCon = document.createElement('a');
@@ -45,4 +47,22 @@ const getEditor = () => {
     con.style.display = 'none';
     con.appendChild(TA);
     return con;
+}
+
+const wrapInContainer = (el) => {
+    el.style.paddingRight = `${buttonSize + 4}px`
+    let elc = el.cloneNode();
+    let editor = getEditor(el);
+    
+    let container = document.createElement("div");
+    container.appendChild(elc);
+    container.appendChild(iconCon)
+    container.appendChild(editor)
+
+    el.parentNode.replaceChild(
+        container,
+        el
+    )
+
+    let cEditor = CKEDITOR.replace(editor.children[0]);
 }
