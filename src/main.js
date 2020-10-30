@@ -55,7 +55,11 @@ const getSubmitButton = ({id, value}) => {
     let con = document.createElement('div');
 
     button.id = `editor_button_${id}`;
-    button.value = value;
+    button.innerHTML = value;
+
+    button.onclick = () => {
+        alert(CKEDITOR.instances[id].getData());
+    }
 
     con.appendChild(button);
     return con;
@@ -78,6 +82,8 @@ const wrapInContainer = (el) => {
     )
 
     let cEditor = CKEDITOR.replace(editor.children[0]);
+    let button = getSubmitButton({id: cEditor.name, value: 'Done'});
+    editor.appendChild(button);
 }
 
 window.onload = () => {
