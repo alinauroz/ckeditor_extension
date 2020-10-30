@@ -1,7 +1,7 @@
 const data = Object.freeze({
-    maxWidth: 20,
-    maxHeight: 20,
-    icon: '',
+    iconMaxWidth: 20,
+    iconMaxHeight: 20,
+    icon: 'https://www.flaticon.com/svg/static/icons/svg/61/61456.svg',
     target: [
         'textarea',
         'input[type=text]'
@@ -17,6 +17,7 @@ const getIcon = () => {
 
     icon.style.maxWidth = data.iconMaxWidth;
     icon.style.maxHeight = data.iconMaxHeight;
+    icon.src = data.icon;
 
     iconCon.onclick = () => {
         alert(1)
@@ -40,7 +41,7 @@ const getElements = () => {
     return els;
 }
 
-const getEditor = () => {
+const getEditor = (el) => {
     let con = document.createElement("div");
     let TA = document.createElement('textarea');
     TA.value = el.value;
@@ -53,6 +54,7 @@ const wrapInContainer = (el) => {
     el.style.paddingRight = `${buttonSize + 4}px`
     let elc = el.cloneNode();
     let editor = getEditor(el);
+    let iconCon = getIcon();
     
     let container = document.createElement("div");
     container.appendChild(elc);
@@ -65,4 +67,13 @@ const wrapInContainer = (el) => {
     )
 
     let cEditor = CKEDITOR.replace(editor.children[0]);
+}
+
+window.onload = () => {
+    
+    getElements().map(el => {
+        console.log(el);
+        wrapInContainer(el);
+    })
+
 }
