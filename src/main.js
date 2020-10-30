@@ -29,7 +29,10 @@ const getElements = () => {
     let els = [];
 
     data.target.map(target => {
-        els.concat(document.querySelectorAll(target));
+        els_ = document.querySelectorAll(target);
+        els_.forEach(el => {
+            els.push(el)
+        });
     });
 
     return els;
