@@ -50,6 +50,17 @@ const getEditor = (el) => {
     return con;
 }
 
+const getSubmitButton = ({id, value}) => {
+    let button = document.createElement('button');
+    let con = document.createElement('div');
+
+    button.id = `editor_button_${id}`;
+    button.value = value;
+
+    con.appendChild(button);
+    return con;
+}
+
 const wrapInContainer = (el) => {
     el.style.paddingRight = `${buttonSize + 4}px`
     let elc = el.cloneNode();
