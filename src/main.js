@@ -59,7 +59,9 @@ const getSubmitButton = ({id, value}) => {
 
     button.onclick = (e) => {
         let val = CKEDITOR.instances[id].getData();
-        e.target.parentNode.parentNode.parentNode.children[0].value = val;
+        e.target.parentNode.parentNode.parentNode.children[0].value = val.indexOf('<p>') == 0 ? 
+                                                                        val.substr(3, val.length - 8)
+                                                                        : val;
     }
 
     con.appendChild(button);
