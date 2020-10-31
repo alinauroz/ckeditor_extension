@@ -6,7 +6,13 @@ const data = Object.freeze({
         'textarea',
         'input[type=text]'
     ]
-})
+});
+
+const style = `
+    .ckedit_editor_container {
+        width: 300px;
+    }
+`
 
 const buttonSize = data.maxWidth;
 
@@ -46,6 +52,7 @@ const getEditor = (el) => {
     let TA = document.createElement('textarea');
     TA.value = el.value;
     con.style.display = 'none';
+    con.class = 'ckeditor_editor_con'
     con.appendChild(TA);
     return con;
 }
