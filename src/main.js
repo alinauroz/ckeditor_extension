@@ -8,9 +8,12 @@ const data = Object.freeze({
     ]
 });
 
-const style = `
+const STYLES = `
+    .ckedit_container {
+        width: 600px;
+    }
     .ckedit_editor_container {
-        width: 300px;
+        position: absolute;
     }
 `
 
@@ -95,7 +98,7 @@ const wrapInContainer = (el) => {
     container.appendChild(elc);
     container.appendChild(iconCon)
     container.appendChild(editor)
-    container.class = 'ckeditor_editor_con';
+    container.setAttribute('class', 'ckedit_container');
 
     el.parentNode.replaceChild(
         container,
@@ -109,6 +112,10 @@ const wrapInContainer = (el) => {
 }
 
 window.onload = () => {
+
+    let style = document.createElement("style");
+    style.innerHTML = STYLES;
+    document.getElementsByTagName('head')[0].appendChild(style);
     
     getElements().map(el => {
         console.log(el);
