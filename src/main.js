@@ -52,7 +52,6 @@ const getEditor = (el) => {
     let TA = document.createElement('textarea');
     TA.value = el.value;
     con.style.display = 'none';
-    con.class = 'ckeditor_editor_con'
     con.appendChild(TA);
     return con;
 }
@@ -96,6 +95,7 @@ const wrapInContainer = (el) => {
     container.appendChild(elc);
     container.appendChild(iconCon)
     container.appendChild(editor)
+    container.class = 'ckeditor_editor_con';
 
     el.parentNode.replaceChild(
         container,
