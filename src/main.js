@@ -120,6 +120,7 @@ const wrapInContainer = (el) => {
         }
     });
   
+    editor.previousSibling.style.display = 'none';
 
     let button = getSubmitButton({id: '', value: 'Done'});
     editor.appendChild(button);
