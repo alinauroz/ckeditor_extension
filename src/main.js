@@ -55,7 +55,6 @@ const getElements = () => {
 
 const getEditor = (el) => {
     let con = document.createElement("div");
-    con.style.display = 'none';
     con.innerHTML = el.value;
     con.setAttribute('class',  'my_editor');
     return con;
@@ -85,8 +84,7 @@ const getHideButton = () => {
     button.innerHTML = "Hide";
 
     button.onclick = (e) => {
-        e.target.parentNode.parentNode.children[2].style.display = 'none';
-        e.target.parentNode.parentNode.children[3].style.display = 'none';
+        e.target.parentNode.parentNode.style.display = 'none';
     }
 
     return button;
@@ -125,7 +123,7 @@ const wrapInContainer = (el) => {
         }
     });
   
-    editor.previousSibling.style.display = 'none';
+    editorCon.style.display = 'none';
 
     let button = getSubmitButton({id: '', value: 'Done'});
     editor.appendChild(button);
