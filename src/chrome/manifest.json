@@ -8,9 +8,12 @@
           "<all_urls>"
         ],
         "js": [
-            "ckeditor.js",
-            "config.js",
-            "inject.js"
+            "jquery.min.js",
+            "highlight.min.js",
+            "katex.min.js",
+            "quil.js",
+            "addStyles.js",
+            "main.js"
         ]
       }
     ]
