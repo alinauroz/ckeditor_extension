@@ -85,6 +85,7 @@ const getHideButton = () => {
 
     button.onclick = (e) => {
         e.target.parentNode.parentNode.children[2].style.display = 'none';
+        e.target.parentNode.parentNode.children[3].style.display = 'none';
     }
 
     return button;
@@ -109,14 +110,14 @@ const wrapInContainer = (el) => {
 
     
     var quill = new Quill(editor, {
-          theme: 'snow',
-      modules: {
-        toolbar: {
-          formula: true,
-          syntax: true,
-          toolbar: '#toolbar-container'
+        theme: 'snow',
+        modules: {
+          toolbar: {
+            formula: true,
+            syntax: true,
+            toolbar: '#toolbar-container'
+          }
         }
-      }
     });
   
 
