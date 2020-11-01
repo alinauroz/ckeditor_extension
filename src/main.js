@@ -138,4 +138,8 @@ window.onload = () => {
         wrapInContainer(el);
     })
 
+    STYLES_.map(style => {
+        addStyle(style);
+    })
+
 }
