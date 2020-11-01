@@ -12,8 +12,10 @@ const STYLES = `
     .editor_container {
         width: 600px;
     }
-    .editor_editor_container {
-        position: absolute;
+    .my_editor_continaer {
+        position: absolute !important;
+        background: white;
+
     }
 `
 
@@ -56,7 +58,6 @@ const getEditor = (el) => {
     con.style.display = 'none';
     con.innerHTML = el.value;
     con.setAttribute('class',  'my_editor');
-    //con.setAttribute('class', 'editor_editor_container');
     return con;
 }
 
@@ -93,14 +94,18 @@ const getHideButton = () => {
 
 const wrapInContainer = (el) => {
     el.style.paddingRight = `${buttonSize + 4}px`
+    let editorCon = document.createElement("div");
+    editorCon.setAttribute('class', 'my_editor_container');
+
     let elc = el.cloneNode();
     let editor = getEditor(el);
     let iconCon = getIcon();
     
     let container = document.createElement("div");
+    editorCon.appendChild(editor);
     container.appendChild(elc);
     container.appendChild(iconCon)
-    container.appendChild(editor)
+    container.appendChild(editorCon)
     container.setAttribute('class', 'editor_container');
 
     el.parentNode.replaceChild(
