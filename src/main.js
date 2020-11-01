@@ -103,8 +103,10 @@ const wrapInContainer = (el) => {
     let elc = el.cloneNode();
     let editor = getEditor(el);
     let iconCon = getIcon();
+    let toolbar = getToolbar();
     
     let container = document.createElement("div");
+    editorCon.appendChild(toolbar);
     editorCon.appendChild(editor);
     container.appendChild(elc);
     container.appendChild(iconCon)
@@ -120,11 +122,7 @@ const wrapInContainer = (el) => {
     var quill = new Quill(editor, {
         theme: 'snow',
         modules: {
-          toolbar: {
-            formula: true,
-            syntax: true,
-            toolbar: '#toolbar-container'
-          }
+          toolbar: toolbar
         }
     });
   
