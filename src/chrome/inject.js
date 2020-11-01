@@ -1,4 +1,4 @@
-const data = Object.freeze({
+const EDITOR_DATA = Object.freeze({
     iconMaxWidth: 20,
     iconMaxHeight: 20,
     icon: 'https://www.flaticon.com/svg/static/icons/svg/61/61456.svg',
@@ -17,16 +17,16 @@ const STYLES = `
     }
 `
 
-const buttonSize = data.maxWidth;
+const buttonSize = EDITOR_DATA.maxWidth;
 
 const getIcon = () => {
 
     let iconCon = document.createElement('a');
     let icon = document.createElement('img');
 
-    icon.style.maxWidth = data.iconMaxWidth;
-    icon.style.maxHeight = data.iconMaxHeight;
-    icon.src = data.icon;
+    icon.style.maxWidth = EDITOR_DATA.iconMaxWidth;
+    icon.style.maxHeight = EDITOR_DATA.iconMaxHeight;
+    icon.src = EDITOR_DATA.icon;
 
     iconCon.onclick = (e) => {
         e.target.parentNode.nextSibling.style.display = 'block'
@@ -40,7 +40,7 @@ const getElements = () => {
 
     let els = [];
 
-    data.target.map(target => {
+    EDITOR_DATA.target.map(target => {
         els_ = document.querySelectorAll(target);
         els_.forEach(el => {
             els.push(el)
@@ -68,8 +68,7 @@ const getSubmitButton = ({id, value}) => {
     button.innerHTML = value;
 
     button.onclick = (e) => {
-        //let val = CKEDITOR.instances[id].getData();
-        let val = "ABC"
+        let val = CKEDITOR.instances[id].getData();
         e.target.parentNode.parentNode.parentNode.children[0].value = val.indexOf('<p>') == 0 ? 
                                                                         val.substr(3, val.length - 8)
                                                                         : val;
@@ -107,20 +106,20 @@ const wrapInContainer = (el) => {
         el
     )
 
-    let button = getSubmitButton({id: '', value: 'Done'});
+    let cEditor = CKEDITOR.replace(editor.children[0]);
+    let button = getSubmitButton({id: cEditor.name, value: 'Done'});
     editor.appendChild(button);
     editor.appendChild(getHideButton());
 }
 
-window.onload = () => {
-
-    let style = document.createElement("style");
-    style.innerHTML = STYLES;
-    document.getElementsByTagName('head')[0].appendChild(style);
-    
-    getElements().map(el => {
-        console.log(el);
-        wrapInContainer(el);
-    })
-
+const editorMain = () => {
+	let style = document.createElement("style");
+	style.innerHTML = STYLES;
+	document.getElementsByTagName('head')[0].appendChild(style);
+	getElements().map(el => {
+		    console.log(el);
+		    wrapInContainer(el);
+	})
 }
+
+editorMain();
