@@ -32,7 +32,6 @@ const getIcon = () => {
 
     iconCon.onclick = (e) => {
         e.target.parentNode.nextSibling.style.display = 'block'
-        e.target.parentNode.nextSibling.nextSibling.style.display = 'block'
     }
 
     iconCon.appendChild(icon);
@@ -70,7 +69,7 @@ const getSubmitButton = ({id, value}) => {
     button.onclick = (e) => {
         //let val = CKEDITOR.instances[id].getData();
         let val = "ABC"
-        e.target.parentNode.parentNode.parentNode.children[0].value = val.indexOf('<p>') == 0 ? 
+        e.target.parentNode.parentNode.parentNode.parentNode.children[0].value = val.indexOf('<p>') == 0 ? 
                                                                         val.substr(3, val.length - 8)
                                                                         : val;
     }
