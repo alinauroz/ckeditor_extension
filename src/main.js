@@ -30,6 +30,7 @@ const getIcon = () => {
 
     iconCon.onclick = (e) => {
         e.target.parentNode.nextSibling.style.display = 'block'
+        e.target.parentNode.nextSibling.nextSibling.style.display = 'block'
     }
 
     iconCon.appendChild(icon);
@@ -54,7 +55,8 @@ const getEditor = (el) => {
     let con = document.createElement("div");
     con.style.display = 'none';
     con.innerHTML = el.value;
-    con.setAttribute('class', 'editor_editor_container');
+    con.setAttribute('class',  'my_editor');
+    //con.setAttribute('class', 'editor_editor_container');
     return con;
 }
 
@@ -104,6 +106,19 @@ const wrapInContainer = (el) => {
         container,
         el
     )
+
+    
+    var quill = new Quill(editor, {
+          theme: 'snow',
+      modules: {
+        toolbar: {
+          formula: true,
+          syntax: true,
+          toolbar: '#toolbar-container'
+        }
+      }
+    });
+  
 
     let button = getSubmitButton({id: '', value: 'Done'});
     editor.appendChild(button);
