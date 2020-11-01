@@ -9,10 +9,10 @@ const data = Object.freeze({
 });
 
 const STYLES = `
-    .ckeditor_container {
+    .editor_container {
         width: 600px;
     }
-    .ckeditor_editor_container {
+    .editor_editor_container {
         position: absolute;
     }
 `
@@ -56,7 +56,7 @@ const getEditor = (el) => {
     TA.value = el.value;
     con.style.display = 'none';
     con.appendChild(TA);
-    con.setAttribute('class', 'ckeditor_editor_container');
+    con.setAttribute('class', 'editor_editor_container');
     return con;
 }
 
@@ -100,7 +100,7 @@ const wrapInContainer = (el) => {
     container.appendChild(elc);
     container.appendChild(iconCon)
     container.appendChild(editor)
-    container.setAttribute('class', 'ckeditor_container');
+    container.setAttribute('class', 'editor_container');
 
     el.parentNode.replaceChild(
         container,
