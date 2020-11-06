@@ -4,6 +4,6 @@ const MYEDITORDATA = Object.freeze({
     icon: 'https://www.flaticon.com/svg/static/icons/svg/61/61456.svg',
     target: [
         'textarea',
-    //    'input[type=text]'
+        //'input[type=text]'
     ]
 });
