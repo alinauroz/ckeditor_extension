@@ -21,6 +21,22 @@ const STYLES = `
     .ql-toolbar.ql-snow+.ql-container.ql-snow {
         background: white;
     }
+    .myeditor_done_button, .myeditor_hide_button {
+        border: 0px;
+        background: white;
+        color: #333;
+        padding: 10px;
+        border: 1px solid #333333aa;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-right: 5px;
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+    .myeditor_hide_button {
+        background: transparent;
+        border: 0px;
+    }
 `
 
 const buttonSize = MYEDITORDATA.maxWidth;
@@ -67,10 +83,12 @@ const getEditor = (el) => {
 
 const getSubmitButton = ({id, value, editor}) => {
     let button = document.createElement('button');
-    let con = document.createElement('div');
+    let con = document.createElement('span');
 
     button.id = `editor_button_${id}`;
     button.innerHTML = value;
+    button.setAttribute('class', 'myeditor_done_button');
+    con.setAttribute('class', 'myeditor_done_button_container');
 
     button.onclick = (e) => {
         let val = e.target.parentNode.parentNode.children[0].innerHTML;
@@ -85,7 +103,8 @@ const getSubmitButton = ({id, value, editor}) => {
 
 const getHideButton = () => {
     let button = document.createElement("button");
-    button.innerHTML = "Hide";
+    button.innerHTML = "✕";
+    button.setAttribute('class', 'myeditor_hide_button');
 
     button.onclick = (e) => {
         e.target.parentNode.parentNode.style.display = 'none';
