@@ -142,6 +142,7 @@ const wrapInContainer = (el) => {
     let toolbar = getToolbar();
     
     let container = document.createElement("div");
+    editorCon.appendChild(document.createElement("br"));
     editorCon.appendChild(toolbar);
     editorCon.appendChild(editor);
     container.appendChild(elc);
