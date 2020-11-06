@@ -1,0 +1,23 @@
+{
+  "name": "wsygwic_extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "extension": "cp addStyles.js ./chrome/addStyles.js && cp hightlight.min.js ./chrome/highlight.min.js && cp jquery.min.js ./chrome/jquery.min.js && cp katex.min.js ./chrome/katex.min.js && cp main.js ./chrome/main.js && cp quil.js ./chrome/quil.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alinauroz/ckeditor_extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alinauroz/ckeditor_extension/issues"
+  },
+  "homepage": "https://github.com/alinauroz/ckeditor_extension#readme"
+}
