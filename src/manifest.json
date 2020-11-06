@@ -13,6 +13,7 @@
             "katex.min.js",
             "config.js",
             "quil.js",
+            "image-resize.min.js",
             "addStyles.js",
             "main.js"
         ]
