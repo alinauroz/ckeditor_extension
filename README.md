@@ -21,3 +21,22 @@ _ The extension is loaded in firefox
 
 **Note: _Wait for the page to load completely. This is because this extension access DOM elements and waits for the page to load completely._**
 
+## Adding/Removing Target Elements
+
+A target element is an element on which this extension will work. You can add/remove target elements by doing changes in _config.js_ file. Add or remove elements from the target array.
+
+## Changing Icon
+
+Change the value of _icon_ in the _config.js_ file. Use _base64_ for better performance.
+
+```
+const MYEDITORDATA = Object.freeze({
+    iconMaxWidth: 16,
+    iconMaxHeight: 16,
+    icon: 'https://www.flaticon.com/svg/static/icons/svg/61/61456.svg',
+    target: [
+        'textarea',
+        'input[type=text]' //add here
+    ]
+});
+```
