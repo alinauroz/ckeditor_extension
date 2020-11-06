@@ -36,6 +36,17 @@ const STYLES = `
     .myeditor_hide_button {
         background: transparent;
         border: 0px;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .myeditor_hide_button:hover, .myeditor_done_button:hover {
+        background: #33333333;
+    }
+
+    .myeditor_hide_button:focus,  .myeditor_done_button:focus {
+        outline: none;
     }
 `
 
