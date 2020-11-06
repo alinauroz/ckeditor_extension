@@ -1,6 +1,6 @@
 const MYEDITORDATA = Object.freeze({
-    iconMaxWidth: 20,
-    iconMaxHeight: 20,
+    iconMaxWidth: 16,
+    iconMaxHeight: 16,
     icon: 'https://www.flaticon.com/svg/static/icons/svg/61/61456.svg',
     target: [
         'textarea',
@@ -17,10 +17,19 @@ const STYLES = `
         background-color: white;
         width: 500px;
         height: 350px;
-        zIndex: 2;
+        z-index: 998;
     }
     .my_editor_icon {
-        max-width: 20px;
+        max-width: 16px;
+        max-height: 16px;
+        padding: 4px;
+        border: 1px solid lightgrey;
+        border-radius: 10px;
+        background: white;
+        cursor: pointer;
+    }
+    .ql-toolbar.ql-snow+.ql-container.ql-snow {
+        background: white;
     }
 `
 

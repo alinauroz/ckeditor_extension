@@ -1,34 +1,40 @@
-const data = Object.freeze({
-    iconMaxWidth: 20,
-    iconMaxHeight: 20,
-    icon: 'https://www.flaticon.com/svg/static/icons/svg/61/61456.svg',
-    target: [
-        'textarea',
-        'input[type=text]'
-    ]
-});
-
 const STYLES = `
     .editor_container {
-        width: 600px;
+
     }
     .my_editor_container {
         position: absolute !important;
+        background-color: white;
+        width: 500px;
+        height: 350px;
+        z-index: 998;
+    }
+    .my_editor_icon {
+        max-width: 16px;
+        max-height: 16px;
+        padding: 4px;
+        border: 1px solid lightgrey;
+        border-radius: 10px;
         background: white;
-
+        cursor: pointer;
+    }
+    .ql-toolbar.ql-snow+.ql-container.ql-snow {
+        background: white;
     }
 `
 
-const buttonSize = data.maxWidth;
+const buttonSize = MYEDITORDATA.maxWidth;
 
 const getIcon = () => {
 
     let iconCon = document.createElement('a');
     let icon = document.createElement('img');
 
-    icon.style.maxWidth = data.iconMaxWidth;
-    icon.style.maxHeight = data.iconMaxHeight;
-    icon.src = data.icon;
+    iconCon.style.verticalAlign = 'top';
+    icon.style.maxWidth = MYEDITORDATA.iconMaxWidth;
+    icon.style.maxHeight = MYEDITORDATA.iconMaxHeight;
+    icon.src = MYEDITORDATA.icon;
+    icon.setAttribute('class', 'my_editor_icon');
 
     iconCon.onclick = (e) => {
         e.target.parentNode.nextSibling.style.display = 'block'
@@ -42,7 +48,7 @@ const getElements = () => {
 
     let els = [];
 
-    data.target.map(target => {
+    MYEDITORDATA.target.map(target => {
         els_ = document.querySelectorAll(target);
         els_.forEach(el => {
             els.push(el)
@@ -59,7 +65,7 @@ const getEditor = (el) => {
     return con;
 }
 
-const getSubmitButton = ({id, value}) => {
+const getSubmitButton = ({id, value, editor}) => {
     let button = document.createElement('button');
     let con = document.createElement('div');
 
@@ -67,10 +73,9 @@ const getSubmitButton = ({id, value}) => {
     button.innerHTML = value;
 
     button.onclick = (e) => {
-        //let val = CKEDITOR.instances[id].getData();
-        let val = "ABC"
+        let val = e.target.parentNode.parentNode.children[0].innerHTML;
         e.target.parentNode.parentNode.parentNode.parentNode.children[0].value = val.indexOf('<p>') == 0 ? 
-                                                                        val.substr(3, val.length - 8)
+                                                                        val.substr(3, val.length - 7)
                                                                         : val;
     }
 
@@ -101,6 +106,7 @@ const wrapInContainer = (el) => {
     editorCon.setAttribute('class', 'my_editor_container');
 
     let elc = el.cloneNode();
+
     let editor = getEditor(el);
     let iconCon = getIcon();
     let toolbar = getToolbar();
@@ -113,6 +119,17 @@ const wrapInContainer = (el) => {
     container.appendChild(editorCon)
     container.setAttribute('class', 'editor_container');
 
+    if (el.style.width) {
+        container.style.width =  `calc(${el.style.width} - 24px)`;
+    }
+    else {
+        container.style.width = '100%'
+        elc.style.width = 'calc(100% - 24px)'
+    }
+
+    elc.style.position = 'relative'
+    container.display = 'inherit'
+
     el.parentNode.replaceChild(
         container,
         el
@@ -121,6 +138,7 @@ const wrapInContainer = (el) => {
     
     var quill = new Quill(editor, {
         theme: 'snow',
+        background: 'white',
         modules: {
           toolbar: toolbar
         }
@@ -128,7 +146,7 @@ const wrapInContainer = (el) => {
   
     editorCon.style.display = 'none';
 
-    let button = getSubmitButton({id: '', value: 'Done'});
+    let button = getSubmitButton({id: '', value: 'Done', editor: quill});
     editor.appendChild(button);
     editor.appendChild(getHideButton());
 }
